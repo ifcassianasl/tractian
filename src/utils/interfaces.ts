@@ -24,3 +24,17 @@ export interface companyProps {
   name: string;
   id: number;
 }
+
+export interface userProps {
+  id: number;
+  email: string;
+  name: string;
+  unitId: number;
+  companyId: number;
+}
+
+export interface unitProps {
+  id: number;
+  name: string;
+  companyId: number;
+}

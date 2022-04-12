@@ -22,7 +22,7 @@ export const APIEndpoints = {
     const request = await APIClient("/users");
     return request;
   },
-  getUnities: async () => {
+  getUnits: async () => {
     const request = await APIClient("/units");
     return request;
   },

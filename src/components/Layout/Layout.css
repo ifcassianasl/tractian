@@ -1,6 +1,5 @@
 .ant-layout {
   min-height: 100vh;
-  width: fit-content !important;
 }
 
 #components-layout-demo-custom-trigger .trigger {
