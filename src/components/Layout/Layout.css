@@ -1,5 +1,6 @@
 .ant-layout {
-  height: 100vh;
+  min-height: 100vh;
+  width: fit-content !important;
 }
 
 #components-layout-demo-custom-trigger .trigger {
@@ -52,4 +53,8 @@
 
 .ant-layout-sider-children .ant-dropdown-link:hover{
   background-color: #188fff50;
+}
+
+.ant-layout-sider-children .ant-dropdown-link .anticon {
+  margin-left: 0.5em;
 }
