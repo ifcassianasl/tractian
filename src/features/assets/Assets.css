@@ -16,7 +16,7 @@
 
 .ant-card .ant-card-cover .card-title {
   position: relative;
-  bottom: 40px;
+  bottom: 50px;
   color: #001529;
   backdrop-filter: contrast(0.3);
   padding: 5px;
@@ -43,6 +43,11 @@
   margin-bottom: 0px;
 }
 
+.asset-model-image img {
+  max-height: 500px;
+  object-fit: cover;
+}
+
 @media (min-width: 768px) {
   .ant-card {
     display: flex;
@@ -63,3 +68,4 @@
     width: 250px !important;
   }
 }
+

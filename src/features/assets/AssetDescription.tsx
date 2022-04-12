@@ -1,7 +1,8 @@
 import React from "react";
-import { Descriptions } from "antd";
+import { Descriptions, Typography } from "antd";
 
 const { Item } = Descriptions;
+const { Title } = Typography;
 
 interface AssetDescriptionProps {
   metrics: {
@@ -14,32 +15,38 @@ interface AssetDescriptionProps {
     power?: number;
     rpm?: number;
   };
+  healthscore: number;
 }
 
 const AssetDescription = ({
   metrics,
   specifications,
+  healthscore,
 }: AssetDescriptionProps) => {
+  const { maxTemp, power, rpm } = specifications;
+  const { totalCollectsUptime, totalUptime, lastUptimeAt } = metrics;
+
+  const formatDate = (date: string) => new Date(date).toLocaleString();
+
   return (
     <>
+      <Title level={5}>Saúde: {healthscore}%</Title>
       <Descriptions title="Especificações" layout="vertical" size="small">
         <Item>
-          Temperatura Máxima: {specifications.maxTemp} ºC
+          Temperatura Máxima: {maxTemp} ºC
           <br />
-          Potência: {specifications.power} kWh
+          Potência: {power} kWh
           <br />
-          RPM: {specifications.rpm}
+          RPM: {rpm}
         </Item>
       </Descriptions>
       <Descriptions title="Metricas" layout="vertical" size="small">
         <Item>
-          Total de Coletas Uptime (Ligada): {metrics.totalCollectsUptime}
+          Total de Coletas Uptime (Ligada): {totalCollectsUptime}
           <br />
-          Total de Horas de Coletas Uptime (Ligada):{" "}
-          {metrics.totalUptime.toFixed(2)}h
+          Total de Horas de Coletas Uptime (Ligada): {totalUptime.toFixed(2)}h
           <br />
-          Data da Ultima Coleta Uptime (Ligada):{" "}
-          {new Date(metrics.lastUptimeAt).toLocaleString()}
+          Data da Ultima Coleta Uptime (Ligada): {formatDate(lastUptimeAt)}
         </Item>
       </Descriptions>
     </>

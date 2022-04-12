@@ -1,4 +1,4 @@
-import { Badge, Typography } from "antd";
+import { Badge, Typography, Image } from "antd";
 import React from "react";
 
 import assetsStatus from "../../utils/assetsStatus";
@@ -10,15 +10,21 @@ interface AssetCoverProps {
   status: "inAlert" | "inOperation" | "inDowntime";
   name: string;
   image: string;
+  preview: boolean;
 }
 
-const AssetCover = ({ status, name, image }: AssetCoverProps) => {
+const AssetCover = ({
+  status,
+  name,
+  image,
+  preview = true,
+}: AssetCoverProps) => {
   const { name: statusName, color } = assetsStatus[status];
 
   return (
     <>
       <Ribbon text={statusName} color={color}>
-        <img alt={name} src={image} />
+        <Image alt={name} src={image} width="100%" preview={preview} />
       </Ribbon>
       <Title level={4} className="card-title">
         {name}
