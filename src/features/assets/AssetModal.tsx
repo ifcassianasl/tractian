@@ -18,7 +18,10 @@ interface AssetModelProps {
   setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
+const AssetModal = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
+  const { name, status, image, healthscore, specifications, metrics } =
+    activeAsset;
+
   const options = {
     title: {
       text: "Health",
@@ -26,6 +29,7 @@ const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
     },
     chart: {
       type: "solidgauge",
+      height: 200,
     },
 
     pane: {
@@ -40,7 +44,6 @@ const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
       },
     },
 
-    // the value axis
     yAxis: {
       stops: [
         [0.1, "#DF5353"], // green
@@ -70,12 +73,12 @@ const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
     },
     series: [
       {
-        name: "Health",
-        data: [activeAsset.healthscore],
+        name: "Saúde",
+        data: [healthscore],
         dataLabels: {
           format: `<div style="text-align:center">
-                	<span style="font-size:25px">{y}</span>
-                	<span style="font-size:16px;opacity:0.4"> %</span>
+                  <span style="font-size:25px">{y}</span>
+                  <span style="font-size:16px;opacity:0.4"> %</span>
                 </div>`,
         },
         tooltip: {
@@ -96,21 +99,16 @@ const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
 
   return (
     <Modal
-      title={activeAsset.name}
+      title={name}
       centered
       visible={visible}
       onCancel={() => setVisible(false)}
       footer={[]}
-      width={1000}
+      width="auto"
     >
       <Row gutter={[20, 12]}>
         <Col span={24} lg={24} xl={12} className="asset-model-image">
-          <AssetCover
-            status={activeAsset.status}
-            name={activeAsset.name}
-            image={activeAsset.image}
-            preview
-          />
+          <AssetCover status={status} name={name} image={image} preview />
         </Col>
         <Col span={24} lg={24} xl={12}>
           <HighchartsReact
@@ -118,15 +116,11 @@ const AssetModel = ({ activeAsset, visible, setVisible }: AssetModelProps) => {
             highcharts={Highcharts}
             options={options}
           />
-          <AssetDescription
-            healthscore={activeAsset.healthscore}
-            metrics={activeAsset.metrics}
-            specifications={activeAsset.specifications}
-          />
+          <AssetDescription metrics={metrics} specifications={specifications} />
         </Col>
       </Row>
     </Modal>
   );
 };
 
-export default AssetModel;
+export default AssetModal;
