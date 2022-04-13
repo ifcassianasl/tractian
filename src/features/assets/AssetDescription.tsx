@@ -1,8 +1,7 @@
 import React from "react";
-import { Descriptions, Typography } from "antd";
+import { Descriptions } from "antd";
 
 const { Item } = Descriptions;
-const { Title } = Typography;
 
 interface AssetDescriptionProps {
   metrics: {
@@ -15,13 +14,11 @@ interface AssetDescriptionProps {
     power?: number;
     rpm?: number;
   };
-  healthscore: number;
 }
 
 const AssetDescription = ({
   metrics,
   specifications,
-  healthscore,
 }: AssetDescriptionProps) => {
   const { maxTemp, power, rpm } = specifications;
   const { totalCollectsUptime, totalUptime, lastUptimeAt } = metrics;
@@ -30,7 +27,6 @@ const AssetDescription = ({
 
   return (
     <>
-      <Title level={5}>Saúde: {healthscore}%</Title>
       <Descriptions title="Especificações" layout="vertical" size="small">
         <Item>
           Temperatura Máxima: {maxTemp} ºC
@@ -42,7 +38,8 @@ const AssetDescription = ({
       </Descriptions>
       <Descriptions title="Metricas" layout="vertical" size="small">
         <Item>
-          Total de Coletas Uptime (Ligada): {totalCollectsUptime}
+          {totalCollectsUptime &&
+            `Total de Coletas Uptime (Ligada): ${totalCollectsUptime}`}
           <br />
           Total de Horas de Coletas Uptime (Ligada): {totalUptime.toFixed(2)}h
           <br />

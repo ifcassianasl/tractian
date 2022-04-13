@@ -11,7 +11,7 @@ interface AssetCardProps {
 }
 
 const AssetCard = ({ asset, onClick }: AssetCardProps) => {
-  const { status, name, image, specifications, metrics, healthscore } = asset;
+  const { status, name, image, specifications, metrics } = asset;
 
   return (
     <Col span={24} lg={24} xl={12} xxl={8}>
@@ -27,11 +27,7 @@ const AssetCard = ({ asset, onClick }: AssetCardProps) => {
         hoverable
         onClick={onClick}
       >
-        <AssetDescription
-          healthscore={healthscore}
-          metrics={metrics}
-          specifications={specifications}
-        />
+        <AssetDescription metrics={metrics} specifications={specifications} />
       </Card>
     </Col>
   );
