@@ -54,7 +54,7 @@ const Assets = () => {
         asset.name.toLowerCase().includes(filterAssets.toLowerCase())
       )
     );
-  }, [filterAssets]);
+  }, [filterAssets, assets]);
 
   return (
     <>
