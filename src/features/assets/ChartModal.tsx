@@ -1,11 +1,23 @@
 import { Modal } from "antd";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-import assetsStatus from "../../utils/assetsStatus";
+interface ChartModalProps {
+  visibleChart: boolean;
+  setVisibleChart: Dispatch<SetStateAction<boolean>>;
+  countedStatus: {
+    inAlert: number;
+    inOperation: number;
+    inDowntime: number;
+  };
+}
 
-const ChartModal = ({ visibleChart, setVisibleChart, countedStatus }: any) => {
+const ChartModal = ({
+  visibleChart,
+  setVisibleChart,
+  countedStatus,
+}: ChartModalProps) => {
   const chartOptions = {
     title: {
       text: "Status",

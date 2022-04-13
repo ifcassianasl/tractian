@@ -1,12 +1,11 @@
 import React from "react";
-import { Dropdown, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 
 import {
   SettingOutlined,
   UserOutlined,
   DatabaseOutlined,
-  DownOutlined,
 } from "@ant-design/icons";
 
 import CompDropdown from "./CompDropdown";
