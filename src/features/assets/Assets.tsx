@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Row } from "antd";
+import { Row, Button } from "antd";
+import { LineChartOutlined } from "@ant-design/icons";
 import { APIEndpoints } from "../../services/api";
 
 import { assetsProps } from "../../utils/interfaces";
@@ -30,22 +31,31 @@ const Assets = () => {
   };
 
   return (
-    <Row gutter={[8, 12]} wrap justify="space-between">
-      {assets.map((asset: assetsProps) => (
-        <AssetCard
-          key={asset.id}
-          asset={asset}
-          onClick={() => handleAssetCardCLick(asset)}
+    <>
+      <Row justify="end">
+        <Button
+          icon={<LineChartOutlined style={{ fontSize: 24 }} />}
+          style={{ marginBottom: 10 }}
+          size="large"
         />
-      ))}
-      {activeAsset && (
-        <AssetModel
-          activeAsset={activeAsset}
-          visible={visible}
-          setVisible={setVisible}
-        />
-      )}
-    </Row>
+      </Row>
+      <Row gutter={[8, 12]} wrap justify="space-between">
+        {assets.map((asset: assetsProps) => (
+          <AssetCard
+            key={asset.id}
+            asset={asset}
+            onClick={() => handleAssetCardCLick(asset)}
+          />
+        ))}
+        {activeAsset && (
+          <AssetModel
+            activeAsset={activeAsset}
+            visible={visible}
+            setVisible={setVisible}
+          />
+        )}
+      </Row>
+    </>
   );
 };
 
